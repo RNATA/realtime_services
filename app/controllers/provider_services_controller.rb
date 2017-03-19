@@ -1,6 +1,11 @@
 class ProviderServicesController < ApplicationController
   def create
-    ProviderServicesController.create_all_checked_services(provider_services_params)
+    @provider_service = ProviderServices.create_all_checked_services(provider_services_params)
+    if @provider_service
+      render json: { message: 'success' }, status: :created
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   private

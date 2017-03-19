@@ -8,10 +8,13 @@ class ProviderService < ApplicationRecord
     if @provider
       params[:services].each do |category, details|
         if details[:checked]
-          ProviderService.create(base_rate: details[:base_rate], provider: @provider, service: Service.find_by(category: category.to_s))
+          ProviderService.create(
+            base_rate: details[:base_rate],
+            provider: @provider,
+            service: Service.find_by(category: category.to_s))
         end
       end
-    else
     end
   end
+
 end
