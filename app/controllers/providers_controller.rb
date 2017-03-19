@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
   end
 
   def info
-    @provider = Provider.find_by(info_params)
+    @provider = Provider.find_by(auth_token: info_params)
     if @provider
       render json: { services: @provider.services }, status: :ok
     else
