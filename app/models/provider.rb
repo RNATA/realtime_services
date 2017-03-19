@@ -17,10 +17,9 @@ class Provider < ApplicationRecord
   def set_active(active_services)
     active_services.each do |service, active|
       if active
-        self.provider_services.update(active: true )
+        self.provider_services.find_by(category: service).update(active: true )
       end
     end
-    self.save!
   end
 
   def set_auth_token
