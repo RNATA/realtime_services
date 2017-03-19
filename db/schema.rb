@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319031056) do
+ActiveRecord::Schema.define(version: 20170319041856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170319031056) do
   end
 
   create_table "provider_services", force: :cascade do |t|
-    t.money    "base_fee",    scale: 2
+    t.money    "base_rate",   scale: 2
     t.integer  "service_id"
     t.integer  "provider_id"
     t.datetime "created_at",            null: false

@@ -12,9 +12,11 @@ class Provider < ApplicationRecord
 
   has_secure_password
 
+  after_create :set_auth_token
+
   def set_auth_token
-    return if auth_token.present?
-    self.auth_token = generate_auth_token
+    self.update(auth_token: generate_auth_token)
+    self.save!
   end
 
   private
