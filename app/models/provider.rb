@@ -16,8 +16,9 @@ class Provider < ApplicationRecord
 
   def set_active(active_services)
     active_services.each do |service, active|
+      s = Service.find_by(category: service)
       if active
-        self.provider_services.find_by(service_id: Service.find_by(category: service)).update(active: true )
+        self.provider_services.find_by(service: s).update(active: true )
       end
     end
   end
