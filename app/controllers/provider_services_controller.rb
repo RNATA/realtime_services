@@ -11,6 +11,6 @@ class ProviderServicesController < ApplicationController
   private
 
   def provider_services_params
-    params.require(:auth_token).permit!
+    params.permit!
   end
 end
