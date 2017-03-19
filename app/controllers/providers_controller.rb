@@ -1,10 +1,11 @@
 class ProvidersController < ApplicationController
   def create
+    p params
     @provider = Provider.new(provider_params)
     if @provider.save
       render json: { message: "provider successfully registered" }, status: :created
     else
-      render json: { errors: @client.errors.full_messages }, status: :unproccessable_entity
+      render json: { errors: @provider.errors.full_messages }, status: :unproccessable_entity
     end
   end
 
