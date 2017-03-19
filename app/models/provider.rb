@@ -11,4 +11,15 @@ class Provider < ApplicationRecord
   accepts_nested_attributes_for :provider_services
 
   has_secure_password
+
+  def set_auth_token
+    return if auth_token.present?
+    self.auth_token = generate_auth_token
+  end
+
+  private
+
+  def generate_auth_token
+    SecureRandom.uuid.gsub(/\-/,'')
+  end
 end
