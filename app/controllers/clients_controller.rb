@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      render json: { message: "user successfully registered" }, status: :created
+      render json: { authToken: @client.auth_token }, status: :created
     else
       render json: { errors: @client.errors.full_messages }, status: :unproccessable_entity
     end

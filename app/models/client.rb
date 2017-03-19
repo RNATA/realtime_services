@@ -6,11 +6,12 @@ class Client < ApplicationRecord
   validates_uniqueness_of :email
   validates_format_of :zipcode, with: /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "should be in the form 12345 or 12345-1234"
 
+  after_create :set_auth_token
+
   has_secure_password
 
   def set_auth_token
-    return if auth_token.present?
-    self.auth_token = generate_auth_token
+    self.update(auth_token: generate_auth_token)
   end
 
   private
