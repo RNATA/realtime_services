@@ -1,12 +1,10 @@
 class ProviderServicesController < ApplicationController
   def create
-    p request.headers
-    @provider = Provider.find_by(auth_token: request.headers["auth_token"].first) unless request.headers["auth_token"].nil?
-    if @provider
-      ProviderService.create_all_checked_services(@provider, provider_services_params)
-      render status: :created
+    @provider_service = ProviderService.create_all_checked_services(provider_services_params)
+    if @provider_service
+      render json: { message: 'success' }, status: :created
     else
-      render status: :unauthorized
+      render json: {}, status: :unauthorized
     end
   end
 
