@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
     if @client.save
       render json: { message: "user successfully registered" }, status: :created
     else
-      render json: { errors: @client.errors.full_messages }, status: :unauthorized
+      render json: { errors: @client.errors.full_messages }, status: :unproccessable_entity
     end
   end
 
