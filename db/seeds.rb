@@ -58,12 +58,12 @@
 #   ps.update(active: rand(2) == 1)
 # end
 
-SAMPLE_RATES = ['$80.00', '$60.00', '$70.00']
+# SAMPLE_RATES = ['$80.00', '$60.00', '$70.00']
 
-ProviderService.all.each do |ps|
-  ps.update(base_rate: SAMPLE_RATES.sample)
-end
+# ProviderService.all.each do |ps|
+#   ps.update(base_rate: SAMPLE_RATES.sample)
+# end
 
 Provider.all.each do |p|
-  p.update(company_name: Faker::Comapny.name)
+  p.update(company_name: Faker::Company.name)
 end
