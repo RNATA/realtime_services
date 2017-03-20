@@ -10,6 +10,11 @@ class Client < ApplicationRecord
 
   has_secure_password
 
+  def update_location(location_params)
+    self.update(lat: location_params['lat'], long: location_params['long'])
+    self.save!
+  end
+
   def set_auth_token
     self.update(auth_token: generate_auth_token)
   end

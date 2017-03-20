@@ -10,25 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319205738) do
+ActiveRecord::Schema.define(version: 20170320025616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
-    t.string   "email",            null: false
-    t.string   "street_address",   null: false
-    t.string   "city",             null: false
-    t.string   "state",            null: false
-    t.string   "zipcode",          null: false
-    t.string   "current_location"
-    t.string   "phone_number",     null: false
-    t.string   "password_digest",  null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.string   "email",           null: false
+    t.string   "street_address",  null: false
+    t.string   "city",            null: false
+    t.string   "state",           null: false
+    t.string   "zipcode",         null: false
+    t.string   "phone_number",    null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "auth_token"
+    t.string   "lat"
+    t.string   "long"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -52,19 +53,20 @@ ActiveRecord::Schema.define(version: 20170319205738) do
   end
 
   create_table "providers", force: :cascade do |t|
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
-    t.string   "email",            null: false
-    t.string   "street_address",   null: false
-    t.string   "city",             null: false
-    t.string   "state",            null: false
-    t.string   "zipcode",          null: false
-    t.string   "current_location"
-    t.string   "phone_number",     null: false
-    t.string   "password_digest",  null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.string   "email",           null: false
+    t.string   "street_address",  null: false
+    t.string   "city",            null: false
+    t.string   "state",           null: false
+    t.string   "zipcode",         null: false
+    t.string   "phone_number",    null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "auth_token"
+    t.string   "lat"
+    t.string   "long"
   end
 
   create_table "services", force: :cascade do |t|

@@ -28,6 +28,11 @@ class Provider < ApplicationRecord
     self.save!
   end
 
+  def update_location(location_params)
+    self.update(lat: location_params['lat'], long: location_params['long'])
+    self.save!
+  end
+
   private
 
   def generate_auth_token
