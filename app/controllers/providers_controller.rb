@@ -29,7 +29,7 @@ class ProvidersController < ApplicationController
   def location
     @provider = Provider.find_by(auth_token: location_params[:auth_token])
     if @provider
-      @provider.update_location(params[:current_location])
+      @provider.update_location(location_params[:current_location])
     else
       render status: :unauthorized
     end
