@@ -64,6 +64,6 @@
 #   ps.update(base_rate: SAMPLE_RATES.sample)
 # end
 
-Provider.all.each do |p|
-  p.update(company_name: Faker::Company.name)
-end
+# Provider.all.each do |p|
+#   p.update(company_name: Faker::Company.name)
+# end
