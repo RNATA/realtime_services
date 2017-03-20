@@ -11,7 +11,7 @@ class ClientsController < ApplicationController
   def location
     @client = Client.find_by(auth_token: location_params[:auth_token])
     if @client
-      @client.update(current_location: location_params[:current_location].to_json)
+      @client.update(current_location: location_params[:current_location][:coords].to_json)
     else
       render status: :unauthorized
     end
