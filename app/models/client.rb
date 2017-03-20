@@ -10,6 +10,14 @@ class Client < ApplicationRecord
 
   has_secure_password
 
+  def full_name
+    return "#{self.first_name} #{self.last_name}"
+  end
+
+  def address
+    return "#{street_address} #{city}, #{state}, #{zipcode}"
+  end
+
   def update_location(location_params)
     self.update(lat: location_params['lat'], long: location_params['long'])
     self.save!

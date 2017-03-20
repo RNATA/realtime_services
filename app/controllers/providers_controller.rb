@@ -39,6 +39,13 @@ class ProvidersController < ApplicationController
     @provider = Provider.find_by(auth_token: location_params[:auth_token])
     if @provider
       @provider.update_location(location_params[:current_location])
+      @jobs =  @provider.jobs.where(sent: false)
+      if @jobs.any?
+        @provider.deactivate
+        @job = @jobs.first
+        @client = @job.client
+        render json: { job_type: @job.type, client_name: @client.full_name, client_location: @client.address, phone: @client.phone_number }
+      end
     else
       render status: :unauthorized
     end
