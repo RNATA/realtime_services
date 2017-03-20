@@ -27,6 +27,8 @@ class Provider < ApplicationRecord
     self.provider_services.select { |service| service.active }
   end
 
+  # Provider.where('lat > ? AND lat < ?', 30.0, 35.0)
+
   def set_auth_token
     self.update(auth_token: generate_auth_token)
     self.save!
