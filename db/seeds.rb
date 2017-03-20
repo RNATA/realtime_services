@@ -57,3 +57,11 @@ end
 ProviderService.all.each do |ps|
   ps.update(active: rand(2) == 1)
 end
+
+ProviderService.all.each do |ps|
+  ps.update(base_rate: ['$80.00', '$60.00', '$70.00'].sample(1))
+end
+
+Provider.all.each do |p|
+  p.update(company_name: Faker::Comapny.name)
+end
