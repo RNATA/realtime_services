@@ -44,6 +44,7 @@ class ProvidersController < ApplicationController
         @provider.deactivate
         @job = @jobs.first
         @job.update(sent: true)
+        @job.save
         @client = @job.client
         render json: { job_type: @job.type, client_name: @client.full_name, client_location: @client.address, phone: @client.phone_number }
       end
