@@ -21,7 +21,6 @@ class ProvidersController < ApplicationController
     @provider = Provider.find_by(auth_token: activate_params[:auth_token])
     if @provider
       @provider.set_active(activate_params[:services])
-      render status: :ok
     else
       render status: :unauthorized
     end
