@@ -23,6 +23,10 @@ class Provider < ApplicationRecord
     end
   end
 
+  def active_services
+    self.provider_services.select { |service| service.active }
+  end
+
   def set_auth_token
     self.update(auth_token: generate_auth_token)
     self.save!
