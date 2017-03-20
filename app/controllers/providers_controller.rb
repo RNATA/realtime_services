@@ -47,7 +47,7 @@ class ProvidersController < ApplicationController
   private
 
   def deactivate_params
-    params.require(:auth_token)
+    params.require(:auth_token).permit(:auth_token)
   end
 
   def location_params
