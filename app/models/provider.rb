@@ -27,7 +27,13 @@ class Provider < ApplicationRecord
     self.provider_services.select { |service| service.active }
   end
 
-  # Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", cl.lat + 0.1, cl.lat - 0.1, cl.long + 0.1, cl.long - 0.1)
+  def find_active(coords, category)
+    nearby_providers = Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", coords['lat'] + 0.1,coords['lat'] - 0.1, coords['long'] + 0.1, coords['long'] - 0.1)
+    nearby_providers.map {|provider| provider.provider_services.select {|x| provider.category == category}}.flatten
+  end
+
+    # Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", cl.lat + 0.1, cl.lat - 0.1, cl.long + 0.1, cl.long - 0.1)
+    # pvs.map {|x| x.provider_services.select {|x| x.category == "hvac"}}.flatten.count
 
   def set_auth_token
     self.update(auth_token: generate_auth_token)
