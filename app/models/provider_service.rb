@@ -17,4 +17,8 @@ class ProviderService < ApplicationRecord
     end
   end
 
+  def category
+    self.service.category
+  end
+
 end
