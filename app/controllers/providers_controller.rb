@@ -26,6 +26,15 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def deactivate
+    @provider = Provider.find_by(auth_token: deactivate_params[:auth_token])
+    if @provider
+      @provider.deactivate
+    else
+      render status: :unauthorized
+    end
+  end
+
   def location
     @provider = Provider.find_by(auth_token: location_params[:auth_token])
     if @provider
@@ -36,6 +45,10 @@ class ProvidersController < ApplicationController
   end
 
   private
+
+  def deactivate_params
+    params.require(:auth_token)
+  end
 
   def location_params
     params.permit!

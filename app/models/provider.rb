@@ -27,19 +27,23 @@ class Provider < ApplicationRecord
     self.provider_services.select { |service| service.active }
   end
 
+  def deactivate
+    self.provider_services.each { |service| service.update(active: false) }
+  end
+
   def self.find_active(coords, category)
     nearby_providers = Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", coords['lat'] + 0.4,coords['lat'] - 0.4, coords['long'] + 0.4, coords['long'] - 0.4)
     active_providers = nearby_providers.map {|provider| provider.provider_services.select {|service| (service.category == category) && (service.active) }}.flatten
     active_providers.map {|ps| {:id => ps.id, :name => ps.provider.first_name, :base_rate => ps.base_rate, :phone_number => ps.provider.phone_number, :company_name => ps.provider.company_name } }
   end
 
-  def set_auth_token
-    self.update(auth_token: generate_auth_token)
+  def update_location(location_params)
+    self.update(lat: location_params['lat'], long: location_params['long'])
     self.save!
   end
 
-  def update_location(location_params)
-    self.update(lat: location_params['lat'], long: location_params['long'])
+  def set_auth_token
+    self.update(auth_token: generate_auth_token)
     self.save!
   end
 
