@@ -47,6 +47,8 @@ class ProvidersController < ApplicationController
         @job.save
         @client = @job.client
         render json: { job_type: @job.type, client_name: @client.full_name, client_location: @client.address, phone: @client.phone_number }
+      else
+        render status: :ok
       end
     else
       render status: :unauthorized
