@@ -29,7 +29,7 @@ class Provider < ApplicationRecord
 
   def self.find_active(coords, category)
     nearby_providers = Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", coords['lat'] + 0.1,coords['lat'] - 0.1, coords['long'] + 0.1, coords['long'] - 0.1)
-    nearby_providers.map {|provider| provider.provider_services.select {|x| provider.category == category}}.flatten
+    nearby_providers.map {|provider| provider.provider_services.select {|service| service.category == category}}.flatten
   end
 
     # Provider.where("lat < ? AND lat > ? AND long < ? AND long > ?", cl.lat + 0.1, cl.lat - 0.1, cl.long + 0.1, cl.long - 0.1)
