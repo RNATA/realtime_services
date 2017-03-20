@@ -26,7 +26,20 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def location
+    @provider = Provider.find_by(auth_token: location_params[:auth_token])
+    if @provider
+      @provider.update(current_location: location_params[:current_location])
+    else
+      render status: :unauthorized
+    end
+  end
+
   private
+
+  def location_params
+    params.permit!
+  end
 
   def activate_params
     params.permit!
