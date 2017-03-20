@@ -53,3 +53,7 @@
 Provider.all.each do |provider|
   provider.update(lat: rand(32.0..33.25), long: rand(-117.5..-116.85))
 end
+
+ProviderService.all.each do |ps|
+  ps.update(active: rand(2) == 1)
+end
