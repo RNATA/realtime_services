@@ -6,7 +6,6 @@ class Provider < ApplicationRecord
 
   validates_presence_of :first_name, :phone_number
   validates_uniqueness_of :phone_number
-  validates_format_of :zipcode, :with => /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "should be in the form 12345 or 12345-1234"
 
   has_secure_password
 
