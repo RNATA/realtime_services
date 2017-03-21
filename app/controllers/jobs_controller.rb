@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
   def create
-    p params
     @client = Client.find_by(auth_token: job_params[:auth_token])
     if @client
       Job.create!(provider_service_id: job_params[:provider_service_id], client: @client)
