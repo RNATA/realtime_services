@@ -19,11 +19,15 @@ class ClientsController < ApplicationController
   end
 
   def address
+    p params
+    p address_params
     @provider = Provider.find_by(auth_token: address_params[:client][:auth_token])
     if @provider
+      p @provider
       @provider.update(address: address_params[:client][:address])
       render json: { message: 'success' }, status: :ok
     else
+      p 'happening?'
       render :nothing => true, status: :unproccessable_entity
     end
   end
