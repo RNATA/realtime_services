@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      render json: { authToken: @client.auth_token }, status: :created
+      render json: { authToken: @client.auth_token, client: true }, status: :created
     else
       render json: { errors: @client.errors.full_messages }, status: :unproccessable_entity
     end
@@ -19,19 +19,19 @@ class ClientsController < ApplicationController
   end
 
   def address
-    @client = Client.find_by(auth_token: address_params[:client][:auth_token])
+    @client = Client.find_by(auth_token: address_params[:auth_token])
     if @client
-      @client.update(address: address_params[:client][:address])
+      @client.update(address: address_params[:address])
       render json: { message: 'success' }, status: :ok
     else
-      render :nothing => true, status: :unproccessable_entity
+      render status: :unproccessable_entity
     end
   end
 
   private
 
   def address_params
-    params.permit!
+    params.require(:client).permit(:auth_token, :address)
   end
 
   def location_params
