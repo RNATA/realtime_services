@@ -13,7 +13,7 @@ class ProvidersController < ApplicationController
     if @provider
       render json: { services: @provider.services }, status: :ok
     else
-      render status: :unproccessable_entity
+      render :nothing => true, status: :unproccessable_entity
     end
   end
 
@@ -22,7 +22,7 @@ class ProvidersController < ApplicationController
     if @provider
       @provider.set_active(activate_params[:services])
     else
-      render status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 
@@ -31,7 +31,7 @@ class ProvidersController < ApplicationController
     if @provider
       @provider.deactivate
     else
-      render status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 
@@ -51,7 +51,7 @@ class ProvidersController < ApplicationController
         render :nothing => true, :status => 204
       end
     else
-      render status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 

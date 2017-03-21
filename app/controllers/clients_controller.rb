@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
       @client.update_location(location_params[:coords])
       render json: { providers: Provider.find_active(location_params[:coords], location_params[:category]) }
     else
-      render status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 

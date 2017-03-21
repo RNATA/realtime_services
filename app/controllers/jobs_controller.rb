@@ -6,7 +6,7 @@ class JobsController < ApplicationController
       Job.create!(provider_service_id: job_params[:provider_service_id], client: @client)
       render json: { message: ProviderService.find(job_params[:provider_service_id]).provider.first_name }
     else
-      render status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 
