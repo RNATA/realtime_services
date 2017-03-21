@@ -22,6 +22,7 @@ class ClientsController < ApplicationController
     @provider = Provider.find_by(auth_token: address_params[:auth_token])
     if @provider
       @provider.update(address: address_params[:address])
+      render :nothing => true, status: :ok
     else
       render :nothing => true, status: :unproccessable_entity
     end
