@@ -1,6 +1,6 @@
 class ProviderService < ApplicationRecord
   belongs_to :service
-  belongs_to :provider, inverse_of: :provider_services
+  belongs_to :provider
   has_many :jobs
 
   def self.create_all_checked_services(params)
