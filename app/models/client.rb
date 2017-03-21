@@ -13,10 +13,6 @@ class Client < ApplicationRecord
     return "#{self.first_name} #{self.last_name}"
   end
 
-  def address
-
-  end
-
   def update_location(location_params)
     self.update(lat: location_params['lat'], long: location_params['long'])
     self.save!
