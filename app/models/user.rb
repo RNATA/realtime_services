@@ -1,17 +1,17 @@
 class User
 
-  def self.find_by_email(email)
-    if User.client?(email)
-      return Client.find_by(email: email)
+  def self.find_by_phone_number(phone_number)
+    if User.client?(phone_number)
+      return Client.find_by(phone_number: phone_number)
     else
-      return Provider.find_by(email: email)
+      return Provider.find_by(phone_number: phone_number)
     end
   end
 
   private
 
-  def self.client?(email)
-    Client.find_by(email: email) ? true : false
+  def self.client?(phone_number)
+    Client.find_by(phone_number: phone_number) ? true : false
   end
 
 end
