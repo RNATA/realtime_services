@@ -55,20 +55,7 @@ class ProvidersController < ApplicationController
     end
   end
 
-  def address
-    @provider = Provider.find_by(auth_token: address_params[:auth_token])
-    if @provider
-      @provider.update(address: address_params[:address])
-    else
-      render :nothing => true, status: :unproccessable_entity
-    end
-  end
-
   private
-
-  def address_params
-    params.require(:client).permit(:address, :auth_token)
-  end
 
   def deactivate_params
     params.require(:auth_token)
