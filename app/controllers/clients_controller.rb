@@ -19,9 +19,9 @@ class ClientsController < ApplicationController
   end
 
   def address
-    @provider = Provider.find_by(auth_token: address_params[:auth_token])
+    @provider = Provider.find_by(auth_token: address_params[:client][:auth_token])
     if @provider
-      @provider.update(address: address_params[:address])
+      @provider.update(address: address_params[:client][:address])
       render json: { message: 'success' }, status: :ok
     else
       render :nothing => true, status: :unproccessable_entity
@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
   private
 
   def address_params
-    params.require(:client).permit(:address, :auth_token)
+    params.permit!
   end
 
   def location_params
