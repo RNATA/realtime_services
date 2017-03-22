@@ -45,13 +45,18 @@ class ProvidersController < ApplicationController
   end
 
   def location
+    p params
+    p location_params
     @provider = Provider.find_by(auth_token: location_params[:auth_token])
     if @provider
       @provider.update_location(location_params[:current_location])
       @jobs = @provider.jobs.where(sent: false)
       if @jobs.any?
+        p @jobs
         @provider.deactivate
+        p @provider
         @job = @jobs.first
+        p @job
         @job.update(sent: true)
         @job.save
         @client = @job.client
