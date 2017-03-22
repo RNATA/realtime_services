@@ -13,7 +13,7 @@ class ProvidersController < ApplicationController
     if @provider
       render json: { companyName: @provider.company_name, fullName: @provider.full_name }, status: :ok
     else
-      render json: { message: 'saywhat?' }, status: :unauthorized
+      render :nothing => true, status: :unauthorized
     end
   end
 
