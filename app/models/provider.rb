@@ -25,7 +25,7 @@ class Provider < ApplicationRecord
   end
 
   def active_services
-    self.provider_services.select { |service| service.active }
+    p self.provider_services.select { |service| service.active }
   end
 
   def deactivate
