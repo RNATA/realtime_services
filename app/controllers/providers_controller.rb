@@ -8,6 +8,15 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def profile
+    @provider = Provider.find_by(auth_token: profile_params[:auth_token])
+    if @provider
+      render json: { companyName: @provider.company_name, fullName: @provider.full_name }, status: :ok
+    else
+      render json: { message: 'saywhat?' }, status: :unauthorized
+    end
+  end
+
   def info
     @provider = Provider.find_by(auth_token: info_params)
     if @provider

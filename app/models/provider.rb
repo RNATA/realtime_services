@@ -20,6 +20,10 @@ class Provider < ApplicationRecord
     end
   end
 
+  def full_name
+    return "#{self.first_name} #{self.last_name}"
+  end
+
   def active_services
     self.provider_services.select { |service| service.active }
   end
