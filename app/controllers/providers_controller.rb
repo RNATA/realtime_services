@@ -11,7 +11,7 @@ class ProvidersController < ApplicationController
   def profile
     @provider = Provider.find_by(auth_token: profile_params)
     if @provider
-      render json: { companyName: @provider.company_name, fullName: @provider.full_name }, status: :ok
+      render json: { companyName: @provider.company_name, fullName: @provider.full_name, message: "I'm watching you David" }, status: :ok
     else
       render :nothing => true, status: :unauthorized
     end
@@ -87,6 +87,6 @@ class ProvidersController < ApplicationController
   end
 
   def provider_params
-    params.require(:provider).permit(:first_name, :last_name, :phone_number, :password)
+    params.require(:provider).permit(:first_name, :last_name, :phone_number, :company_name, :password)
   end
 end
