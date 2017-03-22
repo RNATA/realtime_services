@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
   end
 
   def profile
-    @provider = Provider.find_by(auth_token: profile_params[:auth_token])
+    @provider = Provider.find_by(auth_token: profile_params)
     if @provider
       render json: { companyName: @provider.company_name, fullName: @provider.full_name }, status: :ok
     else
@@ -65,6 +65,10 @@ class ProvidersController < ApplicationController
   end
 
   private
+
+  def profile_params
+    params.require(:auth_token)
+  end
 
   def deactivate_params
     params.require(:auth_token)
