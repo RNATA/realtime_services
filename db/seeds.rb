@@ -5,54 +5,58 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-50.times do
-  Client.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    address: "#{Faker::Address.street_address} #{Faker::Address.city} #{Faker::Address.state} #{Faker::Address.zip_code}",
-    phone_number: Faker::PhoneNumber.phone_number,
-    password: 'password'
-  )
-end
+# 50.times do
+#   Client.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: "#{Faker::Address.street_address} #{Faker::Address.city} #{Faker::Address.state} #{Faker::Address.zip_code}",
+#     phone_number: Faker::PhoneNumber.phone_number,
+#     password: 'password'
+#   )
+# end
 
-SERVICE_CATEGORIES = %w{ electrical plumbing hvac miscellaneous }
+# SERVICE_CATEGORIES = %w{ electrical plumbing hvac miscellaneous }
 
-SERVICE_CATEGORIES.each do |category|
-  Service.create!(category: category)
-end
+# SERVICE_CATEGORIES.each do |category|
+#   Service.create!(category: category)
+# end
 
-50.times do
-  Provider.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    phone_number: Faker::PhoneNumber.phone_number,
-    password: 'password',
-    company_name: Faker::Company.name
-  )
-end
+# 50.times do
+#   Provider.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     phone_number: Faker::PhoneNumber.phone_number,
+#     password: 'password',
+#     company_name: Faker::Company.name
+#   )
+# end
+
+# Provider.all.each do |provider|
+#   provider.update(services: Service.all.sample(rand(1..3)))
+# end
+
+# 35.times do
+#   Job.create!(
+#     provider_service: ProviderService.find(rand(1..ProviderService.count)),
+#     client: Client.find(rand(1..Client.count)),
+#     sent: true
+#   )
+# end
+
+# Provider.all.each do |provider|
+#   provider.update(lat: rand(32.0..33.25), long: rand(-117.5..-116.85))
+# end
+
+# ProviderService.all.each do |ps|
+#   ps.update(active: rand(2) == 1)
+# end
+
+# SAMPLE_RATES = ['$80.00', '$60.00', '$70.00']
+
+# ProviderService.all.each do |ps|
+#   ps.update(base_rate: SAMPLE_RATES.sample)
+# end
 
 Provider.all.each do |provider|
-  provider.update(services: Service.all.sample(rand(1..3)))
-end
-
-35.times do
-  Job.create!(
-    provider_service: ProviderService.find(rand(1..ProviderService.count)),
-    client: Client.find(rand(1..Client.count)),
-    sent: true
-  )
-end
-
-Provider.all.each do |provider|
-  provider.update(lat: rand(32.0..33.25), long: rand(-117.5..-116.85))
-end
-
-ProviderService.all.each do |ps|
-  ps.update(active: rand(2) == 1)
-end
-
-SAMPLE_RATES = ['$80.00', '$60.00', '$70.00']
-
-ProviderService.all.each do |ps|
-  ps.update(base_rate: SAMPLE_RATES.sample)
+  provider.update(rating: rand(1..5))
 end
