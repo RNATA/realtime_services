@@ -30,6 +30,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.find_by(auth_token: activate_params[:auth_token])
     if @provider
       @provider.set_active(activate_params[:services])
+      render :nothing => true, status: :ok
     else
       render :nothing => true, status: :unauthorized
     end
@@ -45,8 +46,6 @@ class ProvidersController < ApplicationController
   end
 
   def location
-    p params
-    p location_params
     @provider = Provider.find_by(auth_token: location_params[:auth_token])
     if @provider
       @provider.update_location(location_params[:current_location])
